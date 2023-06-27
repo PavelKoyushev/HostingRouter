@@ -14,6 +14,8 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
 
     func application(_ application: UIApplication, didFinishLaunchingWithOptions launchOptions: [UIApplication.LaunchOptionsKey: Any]?) -> Bool {
         // Override point for customization after application launch.
+        UITabBarItem.appearance().badgeColor = .systemPink
+        UITabBarItem.appearance().setBadgeTextAttributes([NSAttributedString.Key.font: UIFont.systemFont(ofSize: UIFont.systemFontSize, weight: .medium)], for: .normal)
         return true
     }
 
