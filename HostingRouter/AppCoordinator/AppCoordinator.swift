@@ -8,65 +8,84 @@
 import SwiftUI
 import Combine
 
-enum Flow {
+final class AppCoordinator: CoordinatorProtocol {
     
-    case auth
-    case tabbar
-}
-
-final class AppCoordinator {
-    
-    private unowned var sceneDelegate: SceneDelegate
-    
-    private var onbCoordinator: OnboardingCoordinator?
-    private var authCoordinator: AuthCoordinator?
-    private var taBBarCoordinator: TabBarCoordinator?
+    private let window: UIWindow
     
     private let toRootSwitcher = PassthroughSubject<Flow, Never>()
-    
     private var cancellable = Set<AnyCancellable>()
     
-    private var navigationController: UINavigationController?
+    var childCoordinators: [CoordinatorProtocol] = []
     
-    init(sceneDelegate: SceneDelegate) {
+    init(window: UIWindow) {
         
-        self.sceneDelegate = sceneDelegate
-        self.navigationController = UINavigationController()
+        self.window = window
+        
+        bind()
+        print("\(self) inited")
+    }
+    
+    deinit {
+        print("\(self) deinited")
+    }
+}
+
+extension AppCoordinator {
+    
+    func start() {
+        startOnboarding()
+    }
+}
+
+private extension AppCoordinator {
+    
+    func bind() {
         
         toRootSwitcher
             .sink { [weak self] in
                 switch $0 {
                 case .auth:
+                    self?.childCoordinators.removeAll()
                     self?.startAuth()
-                    self?.onbCoordinator = nil
-                    self?.taBBarCoordinator = nil
                 case .tabbar:
+                    self?.childCoordinators.removeAll()
                     self?.startTabBar()
-                    self?.navigationController = nil
-                    self?.authCoordinator = nil
                 }
             }
             .store(in: &cancellable)
-        
-        startOnboarding()
     }
+}
+
+private extension AppCoordinator {
     
     func startOnboarding() {
-        onbCoordinator = OnboardingCoordinator(toRootSwitcher: toRootSwitcher)
-        sceneDelegate.window!.rootViewController = onbCoordinator?.start()
-    }
-    
-    func startTabBar() {
-        taBBarCoordinator = TabBarCoordinator(toRootSwitcher: toRootSwitcher)
-        sceneDelegate.window!.rootViewController = taBBarCoordinator?.start()
+        let navigationController = UINavigationController()
+        let coordinator = OnboardingCoordinator(navigationController: navigationController,
+                                                toRootSwitcher: toRootSwitcher)
+        
+        childCoordinators.append(coordinator)
+        coordinator.start()
+        
+        window.rootViewController = navigationController
+        window.makeKeyAndVisible()
     }
     
     func startAuth() {
-        navigationController = UINavigationController()
-        sceneDelegate.window!.rootViewController = navigationController
-        
-        authCoordinator = AuthCoordinator(presenter: navigationController,
+        let navigationController = UINavigationController()
+        let coordinator = AuthCoordinator(navigationController: navigationController,
                                           toRootSwitcher: toRootSwitcher)
-        authCoordinator?.start()
+        childCoordinators.append(coordinator)
+        coordinator.start()
+        
+        window.rootViewController = navigationController
+        window.makeKeyAndVisible()
+    }
+    
+    func startTabBar() {
+        let coordinator = TabBarCoordinator(toRootSwitcher: toRootSwitcher)
+        childCoordinators.append(coordinator)
+        
+        window.rootViewController = coordinator.start()
+        window.makeKeyAndVisible()
     }
 }

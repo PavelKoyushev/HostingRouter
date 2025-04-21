@@ -5,28 +5,39 @@
 //  Created by Pavel Koyushev on 24.06.2023.
 //
 
-import UIKit
 import SwiftUI
 import Combine
 
-final class TabBarCoordinator: ObservableObject {
-    
-    private let tabBarController = UITabBarController()
-    
-    private var mainCoordinator: MainCoordinator?
-    private let mainNavigationController = UINavigationController()
-    
-    private var profileCoordinator: ProfileCoordinator?
-    private let profileNavigationController = UINavigationController()
+final class TabBarCoordinator: CoordinatorProtocol {
     
     private let toRootSwitcher: PassthroughSubject<Flow, Never>
+    
+    private let tabBarController = UITabBarController()
+    private let profileNavigationController = UINavigationController()
+    
     private let badgeCount = CurrentValueSubject<Int, Never>(0)
     private let selectedTab = PassthroughSubject<Int, Never>()
     
     private var cancellable = Set<AnyCancellable>()
     
+    var childCoordinators: [CoordinatorProtocol] = []
+    
     init(toRootSwitcher: PassthroughSubject<Flow, Never>) {
+        
         self.toRootSwitcher = toRootSwitcher
+        
+        bind()
+        print("\(self) inited")
+    }
+    
+    deinit {
+        print("\(self) deinited")
+    }
+}
+
+private extension TabBarCoordinator {
+    
+    func bind() {
         
         badgeCount
             .sink { [weak self] in
@@ -40,34 +51,34 @@ final class TabBarCoordinator: ObservableObject {
             }
             .store(in: &cancellable)
     }
-    
-    deinit {
-        print("\(self) deinited")
-    }
+}
+
+extension TabBarCoordinator {
     
     func start() -> UITabBarController {
         
-        mainCoordinator = MainCoordinator(presenter: mainNavigationController,
-                                          badgeCount: badgeCount,
-                                          selectedTab: selectedTab)
+        let mainNavigationController = UINavigationController()
+        let mainCoordinator = MainCoordinator(navigationController: mainNavigationController,
+                                              badgeCount: badgeCount,
+                                              selectedTab: selectedTab)
         
-        profileCoordinator = ProfileCoordinator(presenter: profileNavigationController,
-                                                toRootSwitcher: toRootSwitcher)
-        
+        let profileCoordinator = ProfileCoordinator(navigationController: profileNavigationController,
+                                                    toRootSwitcher: toRootSwitcher)
         
         mainNavigationController.tabBarItem = UITabBarItem(title: NSLocalizedString("Main", comment: ""),
                                                            image: UIImage(systemName: "house"),
                                                            tag: 0)
-        
         profileNavigationController.tabBarItem = UITabBarItem(title: NSLocalizedString("Profile", comment: ""),
                                                               image: UIImage(systemName: "person"),
                                                               tag: 1)
         
-        let controllers = [mainNavigationController, profileNavigationController]
-        tabBarController.setViewControllers(controllers, animated: false)
+        childCoordinators = [mainCoordinator, profileCoordinator]
         
-        mainCoordinator?.start()
-        profileCoordinator?.start()
+        let controllers = [mainNavigationController, profileNavigationController]
+        tabBarController.viewControllers = controllers
+        
+        mainCoordinator.start()
+        profileCoordinator.start()
         
         return tabBarController
     }

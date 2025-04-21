@@ -26,7 +26,8 @@ final class HistoryViewModel: ObservableObject {
         self.input = Input()
         self.output = Output()
         
-        Bind()
+        bind()
+        print("\(self) inited")
     }
     
     deinit {
@@ -36,7 +37,7 @@ final class HistoryViewModel: ObservableObject {
 
 private extension HistoryViewModel {
     
-    func Bind() {
+    func bind() {
         
         input.tap
             .sink { [weak self] in

@@ -32,6 +32,6 @@ struct PhoneView: View {
 
 //struct PhoneView_Previews: PreviewProvider {
 //    static var previews: some View {
-//        PhoneView(viewModel: PhoneViewModel(router: <#AuthRouter?#>))
+//        PhoneView(viewModel: PhoneViewModel(router: AuthRouter?))
 //    }
 //}

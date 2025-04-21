@@ -8,32 +8,36 @@
 import SwiftUI
 import Combine
 
-protocol AuthRouter: AnyObject {
+final class AuthCoordinator: CoordinatorBaseProtocol {
     
-    func pushPinCode()
-}
-
-final class AuthCoordinator {
-    
-    weak var presenter: UINavigationController?
+    weak var navigationController: UINavigationController?
     
     private let toRootSwitcher: PassthroughSubject<Flow, Never>
     
-    init(presenter: UINavigationController?,
+    var childCoordinators: [CoordinatorProtocol] = []
+    
+    init(navigationController: UINavigationController?,
          toRootSwitcher: PassthroughSubject<Flow, Never>) {
-        self.presenter = presenter
+        
+        self.navigationController = navigationController
         self.toRootSwitcher = toRootSwitcher
+        
+        print("\(self) inited")
     }
     
     deinit {
         print("\(self) deinited")
     }
+}
+
+extension AuthCoordinator {
     
     func start() {
         let viewModel = PhoneViewModel(router: self)
         let view = PhoneView(viewModel: viewModel)
         let controller = UIHostingController(rootView: view)
-        presenter?.viewControllers = [controller]
+        
+        navigationController?.viewControllers = [controller]
     }
 }
 
@@ -44,6 +48,6 @@ extension AuthCoordinator: AuthRouter {
         let view = PinCodeView(viewModel: viewModel)
         let controller = UIHostingController(rootView: view)
         
-        presenter?.pushViewController(controller, animated: true)
+        navigationController?.pushViewController(controller, animated: true)
     }
 }

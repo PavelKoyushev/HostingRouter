@@ -8,32 +8,28 @@
 import SwiftUI
 import Combine
 
-protocol ProfileRouter: AnyObject {
+final class ProfileCoordinator: CoordinatorBaseProtocol {
     
-    func toAuth()
-    func toHistory()
-    func pushNotifications()
-    func modalView()
-    func presentPopUp()
-    
-    func dismissModal()
-}
-
-final class ProfileCoordinator {
-    
-    weak var presenter: UINavigationController?
+    weak var navigationController: UINavigationController?
     private let toRootSwitcher: PassthroughSubject<Flow, Never>
     
-    init(presenter: UINavigationController?,
+    var childCoordinators: [CoordinatorProtocol] = []
+    
+    init(navigationController: UINavigationController?,
          toRootSwitcher: PassthroughSubject<Flow, Never>) {
         
-        self.presenter = presenter
+        self.navigationController = navigationController
         self.toRootSwitcher = toRootSwitcher
+        
+        print("\(self) inited")
     }
     
     deinit {
         print("\(self) deinited")
     }
+}
+
+extension ProfileCoordinator {
     
     func start() {
         let viewModel = ProfileViewModel(router: self)
@@ -41,19 +37,27 @@ final class ProfileCoordinator {
         let controller = UIHostingController(rootView: view)
         controller.title = "Profile"
         
-        presenter?.navigationBar.prefersLargeTitles = true
-        self.presenter?.setViewControllers([controller], animated: true)
+        navigationController?.navigationBar.prefersLargeTitles = true
+        navigationController?.viewControllers = [controller]
+    }
+}
+
+extension ProfileCoordinator {
+    
+    func removeChild(_ coordinator: CoordinatorProtocol) {
+        childCoordinators.removeAll { $0 === coordinator }
+        print("Child Coordinator deleted: \(type(of: coordinator))")
     }
 }
 
 extension ProfileCoordinator: ProfileRouter {
     
     func toAuth() {
-        self.toRootSwitcher.send(.auth)
+        toRootSwitcher.send(.auth)
     }
     
     func toHistory() {
-        let coordinator = HistoryCoordinator(presenter: presenter)
+        let coordinator = HistoryCoordinator(navigationController: navigationController)
         coordinator.start()
     }
     
@@ -66,18 +70,19 @@ extension ProfileCoordinator: ProfileRouter {
         controller.navigationItem.largeTitleDisplayMode = .never
         controller.title = "Notifications"
         
-        self.presenter?.pushViewController(controller, animated: true)
+        navigationController?.pushViewController(controller, animated: true)
     }
     
     func modalView() {
         let viewModel = ModalViewModel(router: self)
         let view = ModalView(viewModel: viewModel)
         let controller = UIHostingController(rootView: view)
+        controller.title = "ModalView"
         
         let navController = UINavigationController(rootViewController: controller)
         navController.sheetPresentationController?.detents = [.medium(), .large()]
         
-        self.presenter?.present(navController, animated: true)
+        navigationController?.present(navController, animated: true)
     }
     
     func presentPopUp() {
@@ -95,10 +100,19 @@ extension ProfileCoordinator: ProfileRouter {
             navController.modalPresentationStyle = .overCurrentContext
         }
         
-        self.presenter?.present(navController, animated: true)
+        navigationController?.present(navController, animated: true)
+    }
+    
+    func presentModalCoordinator() {
+        let modalCoordinator = ModalCoordinator(parent: self)
+        let navController = modalCoordinator.start()
+        
+        childCoordinators.append(modalCoordinator)
+        
+        navigationController?.present(navController, animated: true)
     }
     
     func dismissModal() {
-        self.presenter?.dismiss(animated: true)
+        navigationController?.dismiss(animated: true)
     }
 }

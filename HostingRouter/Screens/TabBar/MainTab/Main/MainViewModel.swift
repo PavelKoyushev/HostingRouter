@@ -9,8 +9,6 @@ import Combine
 
 final class MainViewModel: ObservableObject {
     
-    //MARK: - Services
-    
     //MARK: - Input/Output
     let input: Input
     @Published var output: Output
@@ -30,7 +28,8 @@ final class MainViewModel: ObservableObject {
         self.input = Input()
         self.output = Output()
         
-        Bind()
+        bind()
+        print("\(self) inited")
     }
     
     deinit {
@@ -40,19 +39,17 @@ final class MainViewModel: ObservableObject {
 
 private extension MainViewModel {
     
-    func Bind() {
+    func bind() {
         
         input.buttonTap
             .sink { [weak self] in
-                guard let self = self else { return }
-                self.badgeCount.send(self.badgeCount.value + 1)
+                self?.badgeCount.send((self?.badgeCount.value ?? 0) + 1)
             }
             .store(in: &cancellable)
         
         input.switchTab
             .sink { [weak self] in
-                guard let self = self else { return }
-                self.selectedTab.send(1)
+                self?.selectedTab.send(1)
             }
             .store(in: &cancellable)
     }

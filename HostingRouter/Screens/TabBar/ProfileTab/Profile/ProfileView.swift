@@ -36,7 +36,7 @@ private extension ProfileView {
                     Color.green
                         .frame(height: 100)
                         .cornerRadius(20)
-                    Text("HistoryOrders")
+                    Text("History Orders")
                         .font(.headline)
                         .foregroundColor(.white)
                 }
@@ -58,7 +58,7 @@ private extension ProfileView {
                     Color.teal
                         .frame(height: 100)
                         .cornerRadius(20)
-                    Text("ModalView")
+                    Text("Modal View")
                         .font(.headline)
                         .foregroundColor(.white)
                 }
@@ -69,12 +69,23 @@ private extension ProfileView {
                     Color.teal
                         .frame(height: 100)
                         .cornerRadius(20)
-                    Text("ModalView2")
+                    Text("Modal View2")
                         .font(.headline)
                         .foregroundColor(.white)
                 }
                 .onTapGesture {
                     viewModel.input.presentPopUp.send()
+                }
+                ZStack {
+                    Color.teal
+                        .frame(height: 100)
+                        .cornerRadius(20)
+                    Text("Modal Coordinator")
+                        .font(.headline)
+                        .foregroundColor(.white)
+                }
+                .onTapGesture {
+                    viewModel.input.presentModalCoordinator.send()
                 }
             }
             .padding()

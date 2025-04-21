@@ -9,8 +9,6 @@ import Combine
 
 final class NotificationsViewModel: ObservableObject {
     
-    //MARK: - Services
-    
     //MARK: - Input/Output
     let input: Input
     @Published var output: Output
@@ -23,7 +21,8 @@ final class NotificationsViewModel: ObservableObject {
         self.input = Input()
         self.output = Output()
         
-        Bind()
+        bind()
+        print("\(self) inited")
     }
     
     deinit {
@@ -33,7 +32,7 @@ final class NotificationsViewModel: ObservableObject {
 
 private extension NotificationsViewModel {
     
-    func Bind() {
+    func bind() {
         
     }
 }

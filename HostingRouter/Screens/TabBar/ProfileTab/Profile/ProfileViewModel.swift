@@ -10,7 +10,6 @@ import Combine
 final class ProfileViewModel: ObservableObject {
     
     //MARK: - Services
-    
     private var router: ProfileRouter?
     
     //MARK: - Input/Output
@@ -28,6 +27,7 @@ final class ProfileViewModel: ObservableObject {
         self.output = Output()
         
         bind()
+        print("\(self) inited")
     }
     
     deinit {
@@ -68,6 +68,12 @@ private extension ProfileViewModel {
                 self?.router?.presentPopUp()
             }
             .store(in: &cancellable)
+        
+        input.presentModalCoordinator
+            .sink { [weak self] in
+                self?.router?.presentModalCoordinator()
+            }
+            .store(in: &cancellable)
     }
 }
 
@@ -82,6 +88,7 @@ extension ProfileViewModel {
         
         let presentModal = PassthroughSubject<Void, Never>()
         let presentPopUp = PassthroughSubject<Void, Never>()
+        let presentModalCoordinator = PassthroughSubject<Void, Never>()
     }
     
     struct Output {
