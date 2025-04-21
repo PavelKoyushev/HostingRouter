@@ -26,7 +26,7 @@ final class HistoryDetailViewModel: ObservableObject {
         self.input = Input()
         self.output = Output()
         
-        Bind()
+        bind()
     }
     
     deinit {
@@ -36,7 +36,7 @@ final class HistoryDetailViewModel: ObservableObject {
 
 private extension HistoryDetailViewModel {
     
-    func Bind() {
+    func bind() {
         
         input.tap
             .sink { [weak self] in

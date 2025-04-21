@@ -5,28 +5,38 @@
 //  Created by Pavel Koyushev on 23.06.2023.
 //
 
-import UIKit
 import SwiftUI
 import Combine
 
-final class OnboardingCoordinator {
+final class OnboardingCoordinator: CoordinatorBaseProtocol {
+    
+    weak var navigationController: UINavigationController?
     
     private let toRootSwitcher: PassthroughSubject<Flow, Never>
     
-    init(toRootSwitcher: PassthroughSubject<Flow, Never>) {
+    var childCoordinators: [CoordinatorProtocol] = []
+    
+    init(navigationController: UINavigationController?,
+         toRootSwitcher: PassthroughSubject<Flow, Never>) {
+        
+        self.navigationController = navigationController
         self.toRootSwitcher = toRootSwitcher
+        
+        print("\(self) inited")
     }
     
     deinit {
         print("\(self) deinited")
     }
+}
+
+extension OnboardingCoordinator {
     
-    func start() -> UINavigationController {
+    func start() {
         let viewModel = OnboardingViewModel(toRootSwitcher: toRootSwitcher)
         let view = OnboardingView(viewModel: viewModel)
         let controller = UIHostingController(rootView: view)
         
-        let navigationController = UINavigationController(rootViewController: controller)
-        return navigationController
+        navigationController?.viewControllers = [controller]
     }
 }

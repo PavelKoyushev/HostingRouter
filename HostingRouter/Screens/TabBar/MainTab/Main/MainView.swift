@@ -12,41 +12,57 @@ struct MainView: View {
     @StateObject var viewModel: MainViewModel
     
     var body: some View {
+        content
+    }
+}
+
+private extension MainView {
+    
+    var content: some View {
         ScrollView {
-            VStack(spacing: 16) {
-                ForEach(1..<4) { _ in
-                    Color.teal
-                        .frame(height: 100)
-                        .cornerRadius(20)
-                }
-                
-                Button(action: {
-                    viewModel.input.buttonTap.send()
-                }) {
-                    Capsule()
-                        .fill(.blue)
-                        .frame(width: 150, height: 50)
-                        .overlay {
-                            Text("Tap me!")
-                                .foregroundColor(.white)
-                        }
-                }
-                
-                Button(action: {
-                    viewModel.input.switchTab.send()
-                }) {
-                    Capsule()
-                        .fill(.green)
-                        .frame(width: 150, height: 50)
-                        .overlay {
-                            Text("Tap me!")
-                                .foregroundColor(.white)
-                        }
-                }
+            VStack {
+                list
+                buttonOne
+                buttonTwo
             }
             .padding()
         }
-        .navigationTitle("Main")
+    }
+    
+    var list: some View {
+        ForEach(1..<4) { _ in
+            Color.teal
+                .frame(height: 100)
+                .cornerRadius(20)
+        }
+    }
+    
+    var buttonOne: some View {
+        Button(action: {
+            viewModel.input.buttonTap.send()
+        }) {
+            Capsule()
+                .fill(.blue)
+                .frame(width: 150, height: 50)
+                .overlay {
+                    Text("Tap me!")
+                        .foregroundColor(.white)
+                }
+        }
+    }
+    
+    var buttonTwo: some View {
+        Button(action: {
+            viewModel.input.switchTab.send()
+        }) {
+            Capsule()
+                .fill(.green)
+                .frame(width: 150, height: 50)
+                .overlay {
+                    Text("Tap me!")
+                        .foregroundColor(.white)
+                }
+        }
     }
 }
 

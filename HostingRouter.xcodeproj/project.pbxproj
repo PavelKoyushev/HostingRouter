@@ -22,7 +22,6 @@
 		E96873042A49BB6800933AC2 /* PopUpView.swift in Sources */ = {isa = PBXBuildFile; fileRef = E96873032A49BB6800933AC2 /* PopUpView.swift */; };
 		E96873062A49BB8000933AC2 /* PopUpViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = E96873052A49BB8000933AC2 /* PopUpViewModel.swift */; };
 		E968730E2A4A026C00933AC2 /* UIScreen+Extensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = E968730D2A4A026C00933AC2 /* UIScreen+Extensions.swift */; };
-		E96873102A4A051700933AC2 /* HostingController.swift in Sources */ = {isa = PBXBuildFile; fileRef = E968730F2A4A051700933AC2 /* HostingController.swift */; };
 		E9C56D2D2A46122600B22FF1 /* MainViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = E9C56D2C2A46122600B22FF1 /* MainViewModel.swift */; };
 		E9C56D2F2A46147300B22FF1 /* OnboardingCoordinator.swift in Sources */ = {isa = PBXBuildFile; fileRef = E9C56D2E2A46147300B22FF1 /* OnboardingCoordinator.swift */; };
 		E9C56D322A461EFD00B22FF1 /* OnboardingViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = E9C56D312A461EFD00B22FF1 /* OnboardingViewModel.swift */; };
@@ -42,6 +41,18 @@
 		E9EAFF232A4AC4140029A431 /* MainCoordinator.swift in Sources */ = {isa = PBXBuildFile; fileRef = E9EAFF222A4AC4140029A431 /* MainCoordinator.swift */; };
 		E9FB476C2A4786270077F392 /* ModalView.swift in Sources */ = {isa = PBXBuildFile; fileRef = E9FB476B2A4786270077F392 /* ModalView.swift */; };
 		E9FB476E2A47863A0077F392 /* ModalViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = E9FB476D2A47863A0077F392 /* ModalViewModel.swift */; };
+		EB8CF58D2DABEB18007901C2 /* ModalCoordinator.swift in Sources */ = {isa = PBXBuildFile; fileRef = EB8CF58C2DABEB17007901C2 /* ModalCoordinator.swift */; };
+		EB8CF5912DABEBAF007901C2 /* ModalFirstView.swift in Sources */ = {isa = PBXBuildFile; fileRef = EB8CF5902DABEBA9007901C2 /* ModalFirstView.swift */; };
+		EB8CF5932DABEBD1007901C2 /* ModalFirstViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = EB8CF5922DABEBCE007901C2 /* ModalFirstViewModel.swift */; };
+		EB8CF5952DABECA1007901C2 /* ModalSecondView.swift in Sources */ = {isa = PBXBuildFile; fileRef = EB8CF5942DABEC9D007901C2 /* ModalSecondView.swift */; };
+		EB8CF5972DABECD7007901C2 /* ModalSecondViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = EB8CF5962DABECCC007901C2 /* ModalSecondViewModel.swift */; };
+		EB8CF5992DABED23007901C2 /* CustomHostingController.swift in Sources */ = {isa = PBXBuildFile; fileRef = EB8CF5982DABED22007901C2 /* CustomHostingController.swift */; };
+		EBB72A352DAEC8FC00659A46 /* Flow.swift in Sources */ = {isa = PBXBuildFile; fileRef = EBB72A342DAEC8FB00659A46 /* Flow.swift */; };
+		EBB72A372DAEC9A800659A46 /* CoordinatorProtocol.swift in Sources */ = {isa = PBXBuildFile; fileRef = EBB72A362DAEC9A800659A46 /* CoordinatorProtocol.swift */; };
+		EBB72A392DAECE2300659A46 /* AuthRouter.swift in Sources */ = {isa = PBXBuildFile; fileRef = EBB72A382DAECE2200659A46 /* AuthRouter.swift */; };
+		EBB72A3B2DAED26600659A46 /* ProfileRouter.swift in Sources */ = {isa = PBXBuildFile; fileRef = EBB72A3A2DAED26500659A46 /* ProfileRouter.swift */; };
+		EBB72A3D2DAED4BC00659A46 /* HistoryRouter.swift in Sources */ = {isa = PBXBuildFile; fileRef = EBB72A3C2DAED4BB00659A46 /* HistoryRouter.swift */; };
+		EBB72A3F2DAED83000659A46 /* ModalCoordinatorRouter.swift in Sources */ = {isa = PBXBuildFile; fileRef = EBB72A3E2DAED82C00659A46 /* ModalCoordinatorRouter.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -60,7 +71,6 @@
 		E96873032A49BB6800933AC2 /* PopUpView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PopUpView.swift; sourceTree = "<group>"; };
 		E96873052A49BB8000933AC2 /* PopUpViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PopUpViewModel.swift; sourceTree = "<group>"; };
 		E968730D2A4A026C00933AC2 /* UIScreen+Extensions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIScreen+Extensions.swift"; sourceTree = "<group>"; };
-		E968730F2A4A051700933AC2 /* HostingController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HostingController.swift; sourceTree = "<group>"; };
 		E9C56D2C2A46122600B22FF1 /* MainViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MainViewModel.swift; sourceTree = "<group>"; };
 		E9C56D2E2A46147300B22FF1 /* OnboardingCoordinator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OnboardingCoordinator.swift; sourceTree = "<group>"; };
 		E9C56D312A461EFD00B22FF1 /* OnboardingViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OnboardingViewModel.swift; sourceTree = "<group>"; };
@@ -82,6 +92,18 @@
 		E9EAFF222A4AC4140029A431 /* MainCoordinator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MainCoordinator.swift; sourceTree = "<group>"; };
 		E9FB476B2A4786270077F392 /* ModalView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ModalView.swift; sourceTree = "<group>"; };
 		E9FB476D2A47863A0077F392 /* ModalViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ModalViewModel.swift; sourceTree = "<group>"; };
+		EB8CF58C2DABEB17007901C2 /* ModalCoordinator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ModalCoordinator.swift; sourceTree = "<group>"; };
+		EB8CF5902DABEBA9007901C2 /* ModalFirstView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ModalFirstView.swift; sourceTree = "<group>"; };
+		EB8CF5922DABEBCE007901C2 /* ModalFirstViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ModalFirstViewModel.swift; sourceTree = "<group>"; };
+		EB8CF5942DABEC9D007901C2 /* ModalSecondView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ModalSecondView.swift; sourceTree = "<group>"; };
+		EB8CF5962DABECCC007901C2 /* ModalSecondViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ModalSecondViewModel.swift; sourceTree = "<group>"; };
+		EB8CF5982DABED22007901C2 /* CustomHostingController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CustomHostingController.swift; sourceTree = "<group>"; };
+		EBB72A342DAEC8FB00659A46 /* Flow.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Flow.swift; sourceTree = "<group>"; };
+		EBB72A362DAEC9A800659A46 /* CoordinatorProtocol.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CoordinatorProtocol.swift; sourceTree = "<group>"; };
+		EBB72A382DAECE2200659A46 /* AuthRouter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AuthRouter.swift; sourceTree = "<group>"; };
+		EBB72A3A2DAED26500659A46 /* ProfileRouter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProfileRouter.swift; sourceTree = "<group>"; };
+		EBB72A3C2DAED4BB00659A46 /* HistoryRouter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HistoryRouter.swift; sourceTree = "<group>"; };
+		EBB72A3E2DAED82C00659A46 /* ModalCoordinatorRouter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ModalCoordinatorRouter.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -136,6 +158,7 @@
 			isa = PBXGroup;
 			children = (
 				E9446EC62A488CDC002CC912 /* HistoryCoordinator.swift */,
+				EBB72A3C2DAED4BB00659A46 /* HistoryRouter.swift */,
 				E9E5860A2A498A2B002587AB /* HistoryView */,
 				E9E5860B2A498A41002587AB /* HistoryDetail */,
 			);
@@ -163,8 +186,8 @@
 		E968730C2A4A025500933AC2 /* Helpers */ = {
 			isa = PBXGroup;
 			children = (
+				EB8CF5982DABED22007901C2 /* CustomHostingController.swift */,
 				E968730D2A4A026C00933AC2 /* UIScreen+Extensions.swift */,
-				E968730F2A4A051700933AC2 /* HostingController.swift */,
 			);
 			path = Helpers;
 			sourceTree = "<group>";
@@ -182,9 +205,11 @@
 			isa = PBXGroup;
 			children = (
 				E908922F2A471C36008AD4B8 /* ProfileCoordinator.swift */,
+				EBB72A3A2DAED26500659A46 /* ProfileRouter.swift */,
 				E9E586082A49876B002587AB /* Profile */,
 				E9446EC52A488CC2002CC912 /* History */,
 				E90892312A472C59008AD4B8 /* Notifications */,
+				EB8CF58B2DABEAE8007901C2 /* ModalCoordinator */,
 				E9FB476A2A47860A0077F392 /* Modal */,
 				E96873022A49BB5900933AC2 /* PopUpView */,
 			);
@@ -204,6 +229,7 @@
 			isa = PBXGroup;
 			children = (
 				E9C56D342A462A4200B22FF1 /* AuthCoordinator.swift */,
+				EBB72A382DAECE2200659A46 /* AuthRouter.swift */,
 				E90892262A46DD54008AD4B8 /* Phone */,
 				E90892272A46DD63008AD4B8 /* PinCode */,
 			);
@@ -255,6 +281,8 @@
 		E9D730332A45E22900FEDCA9 /* AppCoordinator */ = {
 			isa = PBXGroup;
 			children = (
+				EBB72A342DAEC8FB00659A46 /* Flow.swift */,
+				EBB72A362DAEC9A800659A46 /* CoordinatorProtocol.swift */,
 				E9D730342A45E23600FEDCA9 /* AppCoordinator.swift */,
 			);
 			path = AppCoordinator;
@@ -312,6 +340,35 @@
 				E9FB476D2A47863A0077F392 /* ModalViewModel.swift */,
 			);
 			path = Modal;
+			sourceTree = "<group>";
+		};
+		EB8CF58B2DABEAE8007901C2 /* ModalCoordinator */ = {
+			isa = PBXGroup;
+			children = (
+				EB8CF58C2DABEB17007901C2 /* ModalCoordinator.swift */,
+				EBB72A3E2DAED82C00659A46 /* ModalCoordinatorRouter.swift */,
+				EB8CF58E2DABEB89007901C2 /* First */,
+				EB8CF58F2DABEB90007901C2 /* Second */,
+			);
+			path = ModalCoordinator;
+			sourceTree = "<group>";
+		};
+		EB8CF58E2DABEB89007901C2 /* First */ = {
+			isa = PBXGroup;
+			children = (
+				EB8CF5902DABEBA9007901C2 /* ModalFirstView.swift */,
+				EB8CF5922DABEBCE007901C2 /* ModalFirstViewModel.swift */,
+			);
+			path = First;
+			sourceTree = "<group>";
+		};
+		EB8CF58F2DABEB90007901C2 /* Second */ = {
+			isa = PBXGroup;
+			children = (
+				EB8CF5942DABEC9D007901C2 /* ModalSecondView.swift */,
+				EB8CF5962DABECCC007901C2 /* ModalSecondViewModel.swift */,
+			);
+			path = Second;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -391,15 +448,18 @@
 			files = (
 				E9D730212A45E09700FEDCA9 /* ViewController.swift in Sources */,
 				E9446EC92A488DE1002CC912 /* HistoryView.swift in Sources */,
+				EBB72A372DAEC9A800659A46 /* CoordinatorProtocol.swift in Sources */,
 				E9C56D392A462AF300B22FF1 /* PinCodeView.swift in Sources */,
 				E9FB476E2A47863A0077F392 /* ModalViewModel.swift in Sources */,
 				E90892302A471C36008AD4B8 /* ProfileCoordinator.swift in Sources */,
+				EBB72A3B2DAED26600659A46 /* ProfileRouter.swift in Sources */,
+				EBB72A392DAECE2300659A46 /* AuthRouter.swift in Sources */,
 				E908922C2A4718B1008AD4B8 /* TabBarCoordinator.swift in Sources */,
 				E9D730322A45E18700FEDCA9 /* OnboardingView.swift in Sources */,
 				E968730E2A4A026C00933AC2 /* UIScreen+Extensions.swift in Sources */,
 				E9D730382A45E9DC00FEDCA9 /* MainView.swift in Sources */,
 				E9C56D2D2A46122600B22FF1 /* MainViewModel.swift in Sources */,
-				E96873102A4A051700933AC2 /* HostingController.swift in Sources */,
+				EBB72A3F2DAED83000659A46 /* ModalCoordinatorRouter.swift in Sources */,
 				E9C56D2F2A46147300B22FF1 /* OnboardingCoordinator.swift in Sources */,
 				E9446ECB2A488DED002CC912 /* HistoryViewModel.swift in Sources */,
 				E9C56D322A461EFD00B22FF1 /* OnboardingViewModel.swift in Sources */,
@@ -407,17 +467,25 @@
 				E9446EC72A488CDC002CC912 /* HistoryCoordinator.swift in Sources */,
 				E9446ECD2A489495002CC912 /* HistoryDetailView.swift in Sources */,
 				E9446ECF2A4894CB002CC912 /* HistoryDetailViewModel.swift in Sources */,
+				EB8CF5932DABEBD1007901C2 /* ModalFirstViewModel.swift in Sources */,
 				E9C56D372A462AD100B22FF1 /* PhoneView.swift in Sources */,
 				E90892252A46DD4F008AD4B8 /* PhoneViewModel.swift in Sources */,
 				E9D7301D2A45E09700FEDCA9 /* AppDelegate.swift in Sources */,
 				E9D730352A45E23600FEDCA9 /* AppCoordinator.swift in Sources */,
 				E90892332A472C77008AD4B8 /* NotificationsView.swift in Sources */,
+				EB8CF58D2DABEB18007901C2 /* ModalCoordinator.swift in Sources */,
 				E96873042A49BB6800933AC2 /* PopUpView.swift in Sources */,
 				E908922E2A471B2F008AD4B8 /* ProfileViewModel.swift in Sources */,
 				E9EAFF232A4AC4140029A431 /* MainCoordinator.swift in Sources */,
+				EBB72A3D2DAED4BC00659A46 /* HistoryRouter.swift in Sources */,
+				EB8CF5912DABEBAF007901C2 /* ModalFirstView.swift in Sources */,
+				EB8CF5972DABECD7007901C2 /* ModalSecondViewModel.swift in Sources */,
 				E9D7303A2A45E9E600FEDCA9 /* ProfileView.swift in Sources */,
 				E96873062A49BB8000933AC2 /* PopUpViewModel.swift in Sources */,
 				E9D7301F2A45E09700FEDCA9 /* SceneDelegate.swift in Sources */,
+				EBB72A352DAEC8FC00659A46 /* Flow.swift in Sources */,
+				EB8CF5992DABED23007901C2 /* CustomHostingController.swift in Sources */,
+				EB8CF5952DABECA1007901C2 /* ModalSecondView.swift in Sources */,
 				E9FB476C2A4786270077F392 /* ModalView.swift in Sources */,
 				E90892292A46DD85008AD4B8 /* PinCodeViewModel.swift in Sources */,
 				E90892352A472C94008AD4B8 /* NotificationsViewModel.swift in Sources */,

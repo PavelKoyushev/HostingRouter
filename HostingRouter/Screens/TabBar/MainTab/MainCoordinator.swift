@@ -8,35 +8,42 @@
 import SwiftUI
 import Combine
 
-final class MainCoordinator {
+final class MainCoordinator: CoordinatorBaseProtocol {
     
-    weak var presenter: UINavigationController?
+    weak var navigationController: UINavigationController?
     
     private let badgeCount: CurrentValueSubject<Int, Never>
     private let selectedTab: PassthroughSubject<Int, Never>
     
-    init(presenter: UINavigationController?,
+    var childCoordinators: [CoordinatorProtocol] = []
+    
+    init(navigationController: UINavigationController?,
          badgeCount: CurrentValueSubject<Int, Never>,
          selectedTab: PassthroughSubject<Int, Never>) {
         
-        self.presenter = presenter
+        self.navigationController = navigationController
         self.badgeCount = badgeCount
         self.selectedTab = selectedTab
+        
+        print("\(self) inited")
     }
     
     deinit {
         print("\(self) deinited")
     }
+}
+
+extension MainCoordinator {
     
     func start() {
         let viewModel = MainViewModel(badgeCount: badgeCount,
                                       selectedTab: selectedTab)
         let view = MainView(viewModel: viewModel)
         let controller = UIHostingController(rootView: view)
-        
         controller.title = "Main"
         
-        presenter?.navigationBar.prefersLargeTitles = true
-        self.presenter?.setViewControllers([controller], animated: true)
+        navigationController?.navigationBar.prefersLargeTitles = true
+        
+        navigationController?.viewControllers = [controller]
     }
 }

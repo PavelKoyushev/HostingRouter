@@ -1,13 +1,17 @@
 //
-//  PinCodeViewModel.swift
+//  ModalSecondViewModel.swift
 //  HostingRouter
 //
-//  Created by Pavel Koyushev on 24.06.2023.
+//  Created by Pavel Koyushev on 13.04.2025.
 //
 
+import Foundation
 import Combine
 
-final class PinCodeViewModel: ObservableObject {
+final class ModalSecondViewModel: ObservableObject {
+    
+    //MARK: - Services
+    var router: ModalCoordinatorRouter
     
     //MARK: - Input/Output
     let input: Input
@@ -15,11 +19,11 @@ final class PinCodeViewModel: ObservableObject {
     
     //MARK: - Variables
     private var cancellable = Set<AnyCancellable>()
-    private let toRootSwitcher: PassthroughSubject<Flow, Never>
     
-    init(toRootSwitcher: PassthroughSubject<Flow, Never>) {
+    init(router: ModalCoordinatorRouter) {
         
-        self.toRootSwitcher = toRootSwitcher
+        self.router = router
+        
         self.input = Input()
         self.output = Output()
         
@@ -32,23 +36,22 @@ final class PinCodeViewModel: ObservableObject {
     }
 }
 
-private extension PinCodeViewModel {
+private extension ModalSecondViewModel {
     
     func bind() {
         
-        input.tap
+        input.onCloseTap
             .sink { [weak self] in
-                self?.toRootSwitcher.send(.tabbar)
+                self?.router.dismiss()
             }
             .store(in: &cancellable)
     }
 }
 
-extension PinCodeViewModel {
+extension ModalSecondViewModel {
     
     struct Input {
-        let onAppear = PassthroughSubject<Void, Never>()
-        let tap = PassthroughSubject<Void, Never>()
+        let onCloseTap = PassthroughSubject<Void, Never>()
     }
     
     struct Output {

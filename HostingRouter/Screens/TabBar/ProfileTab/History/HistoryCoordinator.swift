@@ -5,27 +5,26 @@
 //  Created by Pavel Koyushev on 25.06.2023.
 //
 
-import Foundation
-import UIKit
 import SwiftUI
 
-protocol HistoryRouter: AnyObject {
+final class HistoryCoordinator: CoordinatorProtocol {
     
-    func pushToDetail()
-    func toRoot()
-}
-
-final class HistoryCoordinator {
+    weak var navigationController: UINavigationController?
     
-    weak var presenter: UINavigationController?
+    var childCoordinators: [CoordinatorProtocol] = []
     
-    init(presenter: UINavigationController?) {
-        self.presenter = presenter
+    init(navigationController: UINavigationController?) {
+        self.navigationController = navigationController
+        
+        print("\(self) inited")
     }
     
     deinit {
         print("\(self) deinited")
     }
+}
+
+extension HistoryCoordinator {
     
     func start() {
         let viewModel = HistoryViewModel(router: self)
@@ -33,7 +32,7 @@ final class HistoryCoordinator {
         let controller = UIHostingController(rootView: view)
         controller.title = "History"
         
-        self.presenter?.pushViewController(controller, animated: true)
+        navigationController?.pushViewController(controller, animated: true)
     }
 }
 
@@ -44,10 +43,10 @@ extension HistoryCoordinator: HistoryRouter {
         let view = HistoryDetailView(viewModel: viewModel)
         let controller = UIHostingController(rootView: view)
         
-        self.presenter?.pushViewController(controller, animated: true)
+        navigationController?.pushViewController(controller, animated: true)
     }
     
     func toRoot() {
-        self.presenter?.popToRootViewController(animated: true)
+        navigationController?.popToRootViewController(animated: true)
     }
 }

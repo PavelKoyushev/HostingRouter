@@ -31,6 +31,9 @@ private extension HistoryView {
             Spacer()
         }
     }
+}
+
+private extension HistoryView {
     
     @ToolbarContentBuilder func toolbarContent() -> some ToolbarContent {
         ToolbarItem(placement: .navigationBarTrailing, content: trailingItem)

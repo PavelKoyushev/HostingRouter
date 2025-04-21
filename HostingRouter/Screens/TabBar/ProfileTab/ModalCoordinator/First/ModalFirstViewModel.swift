@@ -1,16 +1,17 @@
 //
-//  PhoneViewModel.swift
+//  ModalFirstViewModel.swift
 //  HostingRouter
 //
-//  Created by Pavel Koyushev on 24.06.2023.
+//  Created by Pavel Koyushev on 13.04.2025.
 //
 
+import Foundation
 import Combine
 
-final class PhoneViewModel: ObservableObject {
+final class ModalFirstViewModel: ObservableObject {
     
     //MARK: - Services
-    weak var router: AuthRouter?
+    var router: ModalCoordinatorRouter
     
     //MARK: - Input/Output
     let input: Input
@@ -19,7 +20,7 @@ final class PhoneViewModel: ObservableObject {
     //MARK: - Variables
     private var cancellable = Set<AnyCancellable>()
     
-    init(router: AuthRouter?) {
+    init(router: ModalCoordinatorRouter) {
         
         self.router = router
         
@@ -35,23 +36,29 @@ final class PhoneViewModel: ObservableObject {
     }
 }
 
-private extension PhoneViewModel {
+private extension ModalFirstViewModel {
     
     func bind() {
         
-        input.tap
+        input.onPushSecondTap
             .sink { [weak self] in
-                self?.router?.pushPinCode()
+                self?.router.pushSecond()
+            }
+            .store(in: &cancellable)
+        
+        input.onCloseTap
+            .sink { [weak self] in
+                self?.router.dismiss()
             }
             .store(in: &cancellable)
     }
 }
 
-extension PhoneViewModel {
+extension ModalFirstViewModel {
     
     struct Input {
-        let onAppear = PassthroughSubject<Void, Never>()
-        let tap = PassthroughSubject<Void, Never>()
+        let onPushSecondTap = PassthroughSubject<Void, Never>()
+        let onCloseTap = PassthroughSubject<Void, Never>()
     }
     
     struct Output {

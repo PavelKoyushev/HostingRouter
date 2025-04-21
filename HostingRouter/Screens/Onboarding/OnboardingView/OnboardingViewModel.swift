@@ -26,6 +26,7 @@ final class OnboardingViewModel: ObservableObject {
         self.output = Output()
         
         bind()
+        print("\(self) inited")
     }
     
     deinit {
